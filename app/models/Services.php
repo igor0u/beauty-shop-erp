@@ -45,7 +45,7 @@ class Services extends Model
             VALUES (:serviceName, :categoryId, :serviceCost, :measurementUnitId, :service_duration)";
         $this->db->query($query);
         $this->db->bind(':serviceName', $data['serviceName'], PDO::PARAM_STR);
-        $this->db->bind(':categoryId', $data['serviceCategoryId'], PDO::PARAM_INT);
+        $this->db->bind(':categoryId', $data['categoryId'], PDO::PARAM_INT);
         $this->db->bind(':serviceCost', $data['serviceCost'], PDO::PARAM_STR);
         $this->db->bind(':measurementUnitId', $data['measurementUnitId'], PDO::PARAM_INT);
         $this->db->bind(':service_duration', $data['serviceDuration'], PDO::PARAM_STR);
