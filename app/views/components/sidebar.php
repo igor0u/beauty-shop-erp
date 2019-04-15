@@ -7,6 +7,12 @@
             </a>
         </li>
         <li class="nav-item">
+            <a class="nav-link" href="/visits">
+                <i class="mdi mdi-format-list-bulleted menu-icon"></i>
+                <span class="menu-title">Visits</span>
+            </a>
+        </li>
+        <li class="nav-item">
             <a class="nav-link" href="/clients">
                 <i class="mdi mdi-face menu-icon"></i>
                 <span class="menu-title">Clients</span>
