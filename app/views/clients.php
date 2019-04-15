@@ -36,25 +36,9 @@
                                 Client
                             </button>
                         </div>
-
-
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-</div>
-<div class="modal fade mw-100 w-85 bd-modal-lg" id="modalNewClient" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <?php require_once ROOT . '/app/views/modals/newClient.php'; ?>
-        </div>
-    </div>
-</div>
-<div class="modal fade mw-100 w-85 bd-modal-lg" id="modalClient" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <?php require_once ROOT . '/app/views/modals/client.php'; ?>
         </div>
     </div>
 </div>

@@ -17,6 +17,18 @@ class StaffController extends Controller
         $staffList = $this->model->getStaffList();
         $positionsList = $this->model->getPositionsList();
         $pageContent = ROOT . '/app/views/staff.php';
+        $modals = [
+            [
+                'modalTitle' => 'New Employee',
+                'modalId' => 'modalEmployee',
+                'modalContent'=> ROOT . '/app/views/modals/employee.php',
+            ],
+            [
+                'modalTitle' => 'New Position',
+                'modalId' => 'modalPosition',
+                'modalContent' => ROOT . '/app/views/modals/position.php',
+            ],
+        ];
         include_once ROOT . '/app/views/template.php';
     }
 

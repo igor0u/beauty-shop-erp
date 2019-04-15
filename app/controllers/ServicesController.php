@@ -16,6 +16,18 @@ class ServicesController extends Controller
         $categoriesList = $this->model->getCategoriesList();
         $measurementUnits = $this->model->getMeasurementUnits();
         $pageContent = ROOT . '/app/views/services.php';
+        $modals = [
+            [
+                'modalTitle' => 'New Service',
+                'modalId' => 'modalService',
+                'modalContent'=> ROOT . '/app/views/modals/service.php',
+            ],
+            [
+                'modalTitle' => 'New Category',
+                'modalId' => 'modalCategory',
+                'modalContent' => ROOT . '/app/views/modals/serviceCategory.php',
+            ],
+        ];
         include_once ROOT . '/app/views/template.php';
     }
 

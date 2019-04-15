@@ -14,6 +14,13 @@ class VisitsController extends Controller
     {
         $pageTitle = 'Visits';
         $pageContent = ROOT . '/app/views/visits.php';
+        $modals = [
+            [
+                'modalTitle' => '',
+                'modalId' => 'modalVisit',
+                'modalContent'=> ROOT . '/app/views/modals/visit.php',
+            ],
+        ];
         include_once ROOT . '/app/views/template.php';
     }
 

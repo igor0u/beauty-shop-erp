@@ -74,20 +74,6 @@
         </div>
     </div>
 </div>
-<div class="modal fade mw-100 w-85 bd-modal-lg" id="modalEmployee" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <?php require_once ROOT . '/app/views/modals/employee.php'; ?>
-        </div>
-    </div>
-</div>
-<div class="modal fade mw-100 w-85 bd-modal-lg" id="modalPosition" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <?php require_once ROOT . '/app/views/modals/position.php'; ?>
-        </div>
-    </div>
-</div>
 <script src="/public/js/staffFunctions.js"></script>
 <script>
     document.addEventListener("DOMContentLoaded", function () {

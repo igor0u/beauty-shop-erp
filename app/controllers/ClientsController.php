@@ -13,9 +13,19 @@ class ClientsController extends Controller
     public function actionIndex()
     {
         $pageTitle = 'Clients';
-        //$staffList = $this->model->getStaffList();
-        //$positionsList = $this->model->getPositionsList();
         $pageContent = ROOT . '/app/views/clients.php';
+        $modals = [
+            [
+                'modalTitle' => 'New Client',
+                'modalId' => 'modalNewClient',
+                'modalContent'=> ROOT . '/app/views/modals/newClient.php',
+            ],
+            [
+                'modalTitle' => '',
+                'modalId' => 'modalClient',
+                'modalContent' => ROOT . '/app/views/modals/client.php',
+            ],
+        ];
         include_once ROOT . '/app/views/template.php';
     }
 
@@ -36,6 +46,20 @@ class ClientsController extends Controller
         ];
         $this->model->addClient($clientData);
         echo '1';
+    }
+
+    public function actionUpdateClient()
+    {
+        $clientData = [
+            'clientId' => $_POST['clientId'],
+            'surname' => $_POST['surname'],
+            'name' => $_POST['name'],
+            'patronymic' => $_POST['patronymic'],
+            'phone' => $_POST['phone'],
+            'dateOfBirth' => $_POST['dateOfBirth'],
+        ];
+        $result = $this->model->updateClient($clientData);
+        echo $result;
     }
 
     public function actionOpenClient()

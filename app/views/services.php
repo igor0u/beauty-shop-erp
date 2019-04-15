@@ -53,20 +53,6 @@
         </div>
     </div>
 </div>
-<div class="modal fade mw-100 w-85 bd-modal-lg" id="modalService" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <?php require_once ROOT . '/app/views/modals/service.php'; ?>
-        </div>
-    </div>
-</div>
-<div class="modal fade" id="modalCategory" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <?php require_once ROOT . '/app/views/modals/serviceCategory.php'; ?>
-        </div>
-    </div>
-</div>
 <script src="/public/js/servicesFunctions.js"></script>
 <script>
     document.addEventListener("DOMContentLoaded", function () {

@@ -14,6 +14,13 @@ class ScheduleController extends Controller
     {
         $pageTitle = 'Schedule';
         $pageContent = ROOT . '/app/views/schedule.php';
+        $modals = [
+            [
+                'modalTitle' => 'New Visit',
+                'modalId' => 'modalVisit',
+                'modalContent'=> ROOT . '/app/views/modals/visit.php',
+            ],
+        ];
         include_once ROOT . '/app/views/template.php';
     }
 

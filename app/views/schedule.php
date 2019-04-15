@@ -12,13 +12,6 @@
         </div>
     </div>
 </div>
-<div class="modal fade mw-100 w-85 bd-modal-lg" id="modalVisit" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <?php require_once ROOT . '/app/views/modals/visit.php'; ?>
-        </div>
-    </div>
-</div>
 <style>
     .fc-today {
         background: transparent !important; /* FullCalendar hack. because demo will always start out on current day */

@@ -31,16 +31,25 @@
         </div>
     </div>
 </div>
-<div class="modal fade mw-100 w-85 bd-modal-lg" id="modalVisit" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <?php require_once ROOT . '/app/views/modals/visit.php'; ?>
-        </div>
-    </div>
-</div>
+
 <style>
     .modal-dialog {
         max-width: 90% !important;
+    }
+
+    .ui-autocomplete {
+        z-index: 10000;
+        max-height: 200px;
+        overflow-y: auto;
+        /* prevent horizontal scrollbar */
+        overflow-x: hidden;
+    }
+
+    /* IE 6 doesn't support max-height
+     * we use height instead, but this forces the menu to always be this tall
+     */
+    * html .ui-autocomplete {
+        height: 100px;
     }
 </style>
 <script src="/public/js/scheduleFunctions.js"></script>
