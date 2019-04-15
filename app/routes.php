@@ -45,4 +45,6 @@ return array(
     'schedule/visit/update' => 'Schedule/UpdateVisit',
     'settings' => 'Settings/Index',
     'settings/update/info' => 'Settings/updateInfo',
+    'visits' => 'Visits/Index',
+    'visits/list' => 'Visits/GetVisitsList'
 );
