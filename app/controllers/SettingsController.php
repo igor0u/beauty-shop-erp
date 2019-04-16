@@ -16,8 +16,8 @@ class SettingsController extends Controller
 
     public function actionUpdateInfo()
     {
-        $data = $_POST;
-        Settings::updateInfo($data);
+        $info = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+        Settings::updateInfo($info);
         header("Location: http://{$_SERVER['HTTP_HOST']}/settings");
     }
 }

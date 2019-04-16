@@ -46,37 +46,40 @@ class ServicesController extends Controller
 
     public function actionAddCategory()
     {
-        $name = $_POST['categoryName'];
-        $result = $this->model->addCategory($name);
+        $inputName = $_POST['categoryName'];
+        $categoryName = filter_var($inputName, FILTER_SANITIZE_STRING);
+        $result = $this->model->addCategory($categoryName);
         echo $result;
     }
 
     public function actionUpdateCategory()
     {
-        $data = [
+        $inputData = [
             'categoryId' => $_POST['categoryId'],
             'categoryName' => $_POST['categoryName'],
         ];
-        $result = $this->model->updateCategory($data);
+        $categoryData = filter_var_array($inputData, FILTER_SANITIZE_STRING);
+        $result = $this->model->updateCategory($categoryData);
         echo $result;
     }
 
     public function actionAddService()
     {
-        $data = [
+        $inputData = [
             'serviceName' => $_POST['serviceName'],
             'categoryId' => $_POST['categoryId'],
             'serviceCost' => $_POST['serviceCost'],
             'measurementUnitId' => $_POST['measurementUnitId'],
             'serviceDuration' => $_POST['serviceDuration'],
         ];
-        $result = $this->model->addService($data);
+        $serviceData = filter_var_array($inputData, FILTER_SANITIZE_STRING);
+        $result = $this->model->addService($serviceData);
         echo $result;
     }
 
     public function actionUpdateService()
     {
-        $data = [
+        $inputData = [
             'serviceId' => $_POST['serviceId'],
             'serviceName' => $_POST['serviceName'],
             'categoryId' => $_POST['categoryId'],
@@ -84,8 +87,9 @@ class ServicesController extends Controller
             'measurementUnitId' => $_POST['measurementUnitId'],
             'serviceDuration' => $_POST['serviceDuration'],
         ];
-        $this->model->correctServiceDurationIfNeeded($data);
-        $result = $this->model->updateService($data);
+        $serviceData = filter_var_array($inputData, FILTER_SANITIZE_STRING);
+        $this->model->correctServiceDurationIfNeeded($serviceData);
+        $result = $this->model->updateService($serviceData);
         echo $result;
     }
 
