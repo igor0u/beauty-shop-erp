@@ -23,20 +23,17 @@ class Router
         }
         foreach ($this->routes as $key => $value) {
             if (preg_match("~^{$key}$~", $uri)) {
-                $internalRoute = $value;
-                $segments = explode('/', $internalRoute);
+                $segments = explode('/', $value);
                 $controllerName = array_shift($segments) . 'Controller';
                 $controllerPath = ROOT . '/app/controllers/' . $controllerName . '.php';
                 if (file_exists($controllerPath)) {
                     require_once $controllerPath;
                     $controllerObject = new $controllerName;
                     $actionName = 'action' . array_shift($segments);
-                    $parameters = $segments;
-                    call_user_func_array([$controllerObject, $actionName], $parameters);
+                    call_user_func(array($controllerObject, $actionName));
                 }
-                return true;
+                return;
             }
         }
-
     }
 }
