@@ -32,7 +32,8 @@ class ScheduleController extends Controller
 
     public function actionAddVisit()
     {
-        $data = json_decode($_POST['visit'], true);
+        $inputData = json_decode($_POST['visit'], true);
+        $data = filter_var_array($inputData, FILTER_SANITIZE_STRING);
         $clientId = $data['common']['clientId'];
         if ($clientId == '' || !$this->model->clientExists($clientId)) {
             $clientData = [
@@ -95,7 +96,8 @@ class ScheduleController extends Controller
 
     public function actionUpdateVisit()
     {
-        $newServiceData = json_decode($_POST['visit'], true);
+        $inputData = json_decode($_POST['visit'], true);
+        $newServiceData = filter_var_array($inputData, FILTER_SANITIZE_STRING);
         $visitId = $newServiceData['common']['visitId'];
         $newVisitDate = $newServiceData['common']['visitDate'];
         $visitInfo = $this->model->getVisitInfoById($visitId);
@@ -128,7 +130,5 @@ class ScheduleController extends Controller
         $this->model->deleteOrderedServices($servicesToDeleteId);
         $this->model->deleteVisit($visitId);
         echo '1';
-
     }
-
 }

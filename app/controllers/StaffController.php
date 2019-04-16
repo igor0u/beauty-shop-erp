@@ -51,7 +51,7 @@ class StaffController extends Controller
         if (!isset($_POST['employeeId'])) {
             return false;
         }
-        $data = [
+        $inputData = [
             'employeeId' => $_POST['employeeId'],
             'surname' => $search_html = $_POST['surname'],
             'name' => $_POST['name'],
@@ -61,13 +61,14 @@ class StaffController extends Controller
             'email' => $_POST['email'],
             'phoneNumber' => $_POST['phoneNumber'],
         ];
-        $result = $this->model->updateEmployee($data);
+        $employeeData = filter_var_array($inputData, FILTER_SANITIZE_STRING);
+        $result = $this->model->updateEmployee($employeeData);
         echo $result;
     }
 
     public function actionAddEmployee()
     {
-        $data = [
+        $inputData = [
             'surname' => $_POST['surname'],
             'name' => $_POST['name'],
             'patronymic' => $_POST['patronymic'],
@@ -76,14 +77,16 @@ class StaffController extends Controller
             'email' => $_POST['email'],
             'phoneNumber' => $_POST['phoneNumber'],
         ];
-        $result = $this->model->addEmployee($data);
+        $employeeData = filter_var_array($inputData, FILTER_SANITIZE_STRING);
+        $result = $this->model->addEmployee($employeeData);
         echo $result;
     }
 
     public function actionAddPosition()
     {
-        $name = $_POST['positionName'];
-        $result = $this->model->addPosition($name);
+        $inputName = $_POST['positionName'];
+        $positionName = filter_var($inputName, FILTER_SANITIZE_STRING);
+        $result = $this->model->addPosition($positionName);
         echo $result;
     }
 
@@ -92,11 +95,12 @@ class StaffController extends Controller
         if (!isset($_POST['positionId'])) {
             return false;
         }
-        $data = [
+        $inputData = [
             'positionId' => $_POST['positionId'],
             'positionName' => $_POST['positionName'],
         ];
-        $result = $this->model->updatePosition($data);
+        $positionData = filter_var_array($inputData, FILTER_SANITIZE_STRING);
+        $result = $this->model->updatePosition($positionData);
         echo $result;
     }
 

@@ -37,20 +37,21 @@ class ClientsController extends Controller
 
     public function actionAddClient()
     {
-        $clientData = [
+        $inputData = [
             'surname' => $_POST['surname'],
             'name' => $_POST['name'],
             'patronymic' => $_POST['patronymic'],
             'phone' => $_POST['phone'],
             'dateOfBirth' => $_POST['dateOfBirth'],
         ];
+        $clientData = filter_var_array($inputData, FILTER_SANITIZE_STRING);
         $this->model->addClient($clientData);
         echo '1';
     }
 
     public function actionUpdateClient()
     {
-        $clientData = [
+        $inputData = [
             'clientId' => $_POST['clientId'],
             'surname' => $_POST['surname'],
             'name' => $_POST['name'],
@@ -58,6 +59,7 @@ class ClientsController extends Controller
             'phone' => $_POST['phone'],
             'dateOfBirth' => $_POST['dateOfBirth'],
         ];
+        $clientData = filter_var_array($inputData, FILTER_SANITIZE_STRING);
         $result = $this->model->updateClient($clientData);
         echo $result;
     }
