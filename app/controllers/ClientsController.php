@@ -69,20 +69,6 @@ class ClientsController extends Controller
         echo json_encode($result);
     }
 
-    public function actionUpdateService()
-    {
-        $clientData = [
-            'clientId' => $_POST['clientId'],
-            'surname' => $_POST['surname'],
-            'name' => $_POST['name'],
-            'patronymic' => $_POST['patronymic'],
-            'phone' => $_POST['phone'],
-            'dateOfBirth' => $_POST['dateOfBirth'],
-        ];
-        $result = $this->model->updateClient($clientData);
-        echo $result;
-    }
-
     public function actionDeleteClient()
     {
         $clientId = $_POST['clientId'];
