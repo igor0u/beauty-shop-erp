@@ -66,18 +66,19 @@ class Schedule extends Model
 
     public function addAllOrderedServicesToVisit($visitId, $orderedServices)
     {
-        foreach ($orderedServices as $serviceData) {
-            $this->addOrderedServiceToVisit($visitId, $serviceData);
-        }
-        return true;
-    }
-
-    public function addOrderedServiceToVisit($visitId, $serviceData)
-    {
         $query = "INSERT INTO ordered_services 
             (service_id, visit_id, start_time, end_time, quantity, cost, discount, total, employee_id, is_next_consecutive) 
             VALUES (:serviceId, :visitId, :startTime, :endTime, :quantity, :cost, :discount, :total, :employeeId, :isNextConsecutive)";
         $this->db->query($query);
+        foreach ($orderedServices as $serviceData) {
+            $this->bindServiceParams($visitId, $serviceData);
+            $this->db->execute();
+        }
+        return true;
+    }
+
+    public function bindServiceParams($visitId, $serviceData)
+    {
         $this->db->bind(':visitId', $visitId, PDO::PARAM_INT);
         $this->db->bind(':serviceId', $serviceData['serviceId'], PDO::PARAM_INT);
         $this->db->bind(':startTime', $serviceData['startTime'], PDO::PARAM_STR);
@@ -88,7 +89,6 @@ class Schedule extends Model
         $this->db->bind(':total', $serviceData['totalPrice'], PDO::PARAM_STR);
         $this->db->bind(':employeeId', $serviceData['employeeId'], PDO::PARAM_INT);
         $this->db->bind(':isNextConsecutive', $serviceData['isNextConsecutive'], PDO::PARAM_INT);
-        $this->db->execute();
     }
 
     public function getClientsForLiveSearch($querySymbols)
