@@ -128,10 +128,13 @@
     </div>
     <hr>
     <div class="row text-center">
-        <div class="col-6 form-group text-left">
+        <div class="col-4 form-group text-left">
             <button type="button" id="deleteVisit" class="btn btn-danger" disabled>Delete Visit</button>
         </div>
-        <div class="col-6 form-group text-right">
+        <div class="col-4 form-group text-center">
+            <button type="button" id="finishVisit" class="btn btn-outline-success">Services rendered</button>
+        </div>
+        <div class="col-4 form-group text-right">
             <button type="button" id="submitVisit" class="btn btn-primary" disabled></button>
         </div>
     </div>
