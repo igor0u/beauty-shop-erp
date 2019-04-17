@@ -62,6 +62,7 @@ function fillServices(services) {
         row.find('#employeeId').attr('value', s.employeeId);
         row.find('#employeeName').val(s.employeeSurname + " " + s.employeeName + " " + s.employeePatronymic);
         row.find('#service').val(s.serviceName);
+        row.find('#measurementUnitId').attr('value', s.measurementUnitId);
         row.find('#startTime').val(s.startTime);
         row.find('#endTime').val(s.endTime);
         row.find('#endTime').trigger('change');

@@ -81,6 +81,10 @@
                 <input type="number" class="form-control total-price" name="totalPrice" id="totalPrice"
                        value="0"
                        hidden>
+                <input type="number" class="form-control measurement-unit-id" name="measurementUnitId"
+                       id="measurementUnitId"
+                       value=""
+                       hidden>
                 <div class="d-table-cell"><input type="text" class="form-control form-control-sm service"
                                                  name="service" id="service"></div>
                 <div class="d-table-cell">

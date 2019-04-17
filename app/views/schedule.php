@@ -174,12 +174,15 @@
                 var $duration = $row.find('.service-duration').val();
                 var $end = $row.find('.service-end-time').val();
                 var $quantity = $row.find('.service-quantity').val();
+                var $measurementUnitId = $row.find('.measurement-unit-id').val();
 
                 if (parseTime($end) - parseTime($start) <= 0) {
                     $row.find('.service-end-time')
                         .val(getTimeInHoursMinutes(parseTime($start) + parseTime($duration) * $quantity));
                 } else {
-                    if ($end < $prevEnd) {
+                    if ($measurementUnitId === '1'){
+                        $duration = '00:01';
+                    } else if ($end < $prevEnd) {
                         $duration = getTimeInHoursMinutes(Math.floor((parseTime($end) - parseTime($start)) / $quantity));
                     } else {
                         $duration = getTimeInHoursMinutes(Math.ceil((parseTime($end) - parseTime($start)) / $quantity));
