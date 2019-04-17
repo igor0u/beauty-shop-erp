@@ -85,6 +85,7 @@ create table visits
   visit_id int auto_increment
     primary key,
   client_id int not null,
-  visit_date date not null
+  visit_date date not null,
+  isFinished tinyint(1) default 0 null
 );
 

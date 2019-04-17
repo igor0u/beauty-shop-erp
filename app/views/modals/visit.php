@@ -6,6 +6,7 @@
     <form method="post" id="commonForm" class="form row-border visit-add" action="#">
         <input type="hidden" id="visitId" name="visitId" class="" value="">
         <input type="hidden" id="clientId" name="clientId" class="client" value="">
+        <input type="hidden" id="isFinished" name="isFinished" class="" value="">
         <div class="row">
             <div class="col-md-9 card p-3 mb-3">
                 <div class="form-inline">
