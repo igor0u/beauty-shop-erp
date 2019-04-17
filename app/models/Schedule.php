@@ -216,7 +216,8 @@ class Schedule extends Model
     public function getVisitInfoById($visitId)
     {
         $query = "SELECT v.visit_id AS visitId, v.visit_date AS visitDate, v.client_id AS clientId, 
-            c.surname AS clientSurname, c.name AS clientName, c.patronymic AS clientPatronymic, c.phone AS clientPhone
+            c.surname AS clientSurname, c.name AS clientName, c.patronymic AS clientPatronymic, c.phone AS clientPhone,
+            v.is_finished AS isFinished
             FROM visits v 
             INNER JOIN clients c ON v.client_id = c.client_id
             WHERE v.visit_id = :visitId";
@@ -335,5 +336,24 @@ class Schedule extends Model
             $count--;
         }
         return $source;
+    }
+
+    public function getVisitStatus($visitId)
+    {
+        $query = "SELECT is_finished AS isFinished FROM visits WHERE visit_id = :visitId";
+        $this->db->query($query);
+        $this->db->bind(':visitId', $visitId, PDO::PARAM_STR);
+        $this->db->execute();
+        $result = $this->db->result();
+        return $result;
+    }
+
+    public function setVisitFinishStatus($visitId, $finishStatus)
+    {
+        $query = "UPDATE visits SET is_finished=:isFinished WHERE visit_id=:visitId";
+        $this->db->query($query);
+        $this->db->bind(':visitId', $visitId, PDO::PARAM_INT);
+        $this->db->bind(':isFinished', $finishStatus, PDO::PARAM_INT);
+        $this->db->execute();
     }
 }

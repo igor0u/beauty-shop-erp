@@ -8,6 +8,8 @@ function createEvent(employeeId, employeeName, date, start) {
     $('#modalTitle').html('New Visit');
     $('#deleteVisit').prop('disabled', true);
     $('#deleteVisit').prop('hidden', true);
+    $('#finishVisit').prop("disabled", true);
+    $('#finishVisit').prop("hidden", true);
     $('#submitVisit').html('Add Visit');
 }
 
@@ -36,16 +38,20 @@ function openVisit(visitData) {
     $('#clearClientData').prop("disabled", true);
     $('#deleteVisit').prop("disabled", false);
     $('#submitVisit').prop("disabled", true);
+    $('#finishVisit').prop("disabled", false);
+    $('#finishVisit').prop("hidden", false);
 }
 
 function fillForm(data) {
     fillCommonForm(data.visitInfo);
-    fillServices(data.services)
+    fillServices(data.services);
+    updateButtonsOnFinish();
 }
 
 function fillCommonForm(visitInfo) {
     $('#visitId').attr('value', visitInfo.visitId);
     $('#clientId').attr('value', visitInfo.clientId);
+    $('#isFinished').attr('value', visitInfo.isFinished);
     $('#surname').val(visitInfo.clientSurname);
     $('#name').val(visitInfo.clientName);
     $('#patronymic').val(visitInfo.clientPatronymic);
@@ -74,7 +80,20 @@ function fillServices(services) {
         row.find('#discount').val(s.discount);
         row.find('.price').trigger('change');
     });
+}
 
+function updateButtonsOnFinish() {
+    var $button = $('#finishVisit');
+    if ($('#isFinished').val() === '0') {
+        $button.removeClass('active');
+        $('#deleteVisit').prop("disabled", false);
+        $('#btnPlus').prop("disabled", false);
+    } else {
+        $button.addClass('active');
+        $('#deleteVisit').prop("disabled", true);
+        $('#submitVisit').prop("disabled", true);
+        $('#btnPlus').prop("disabled", true);
+    }
 }
 
 function parseTime(time) {
@@ -211,6 +230,33 @@ function deleteVisit() {
             } else {
                 $('.result').attr("class", "result alert bg-danger");
                 $('#resultMsg').html('Something is going wrong. Deleting failed.');
+                $('.result').show(1000);
+            }
+        }
+    });
+}
+
+function finishVisit() {
+    var $visitId = $('#visitId').val();
+    $.ajax({
+        url: 'schedule/visit/finish',
+        type: 'POST',
+        data: 'visitId=' + $visitId,
+        success: function (response) {
+            if (response === '0' || response === '1') {
+                $('#isFinished').attr("value", response);
+                updateButtonsOnFinish();
+                $('#finishVisit').prop("disabled", false);
+                $('.result').attr("class", "result alert bg-success");
+                $('#resultMsg').html("Successfully updated");
+                $('.result').show(1000);
+                setTimeout(function () {
+                    $('.result').hide(1000);
+                }, 2500);
+                isVisitAdded = true;
+            } else {
+                $('.result').attr("class", "result alert bg-danger");
+                $('#resultMsg').html('Something is going wrong. Updating failed.');
                 $('.result').show(1000);
             }
         }

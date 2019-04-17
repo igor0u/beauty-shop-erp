@@ -18,7 +18,7 @@ class ScheduleController extends Controller
             [
                 'modalTitle' => 'New Visit',
                 'modalId' => 'modalVisit',
-                'modalContent'=> ROOT . '/app/views/modals/visit.php',
+                'modalContent' => ROOT . '/app/views/modals/visit.php',
             ],
         ];
         include_once ROOT . '/app/views/template.php';
@@ -130,5 +130,21 @@ class ScheduleController extends Controller
         $this->model->deleteOrderedServices($servicesToDeleteId);
         $this->model->deleteVisit($visitId);
         echo '1';
+    }
+
+    public function actionChangeVisitFinishStatus()
+    {
+        $visitId = $_POST['visitId'];
+        $oldStatus = $this->model->getVisitStatus($visitId);
+        if ($oldStatus['isFinished'] == '0') {
+            $this->model->setVisitFinishStatus($visitId, 1);
+            echo '1';
+        } else if ($oldStatus['isFinished'] == '1') {
+            $this->model->setVisitFinishStatus($visitId, 0);
+            echo '0';
+        } else {
+            echo 'unknown status';
+        }
+
     }
 }

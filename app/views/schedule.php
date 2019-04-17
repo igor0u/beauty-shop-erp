@@ -360,6 +360,16 @@
                 deleteVisit();
                 calendar.refetchEvents();
             });
+            $('#finishVisit').on('click', function () {
+                $('#submitVisit').prop("disabled", true);
+                $('#deleteVisit').prop("disabled", true);
+                $(this).prop("disabled", true);
+                if ($('#visitId').val() === '') {
+                    $(this).prop("disabled", false);
+                } else {
+                    finishVisit();
+                }
+            });
             $('#visitForm').on('click', ':input', function () {
                 $(this).removeClass('is-invalid');
             });

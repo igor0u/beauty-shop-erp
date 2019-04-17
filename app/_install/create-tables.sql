@@ -86,6 +86,6 @@ create table visits
     primary key,
   client_id int not null,
   visit_date date not null,
-  isFinished tinyint(1) default 0 null
+  is_finished tinyint(1) default 0 null
 );
 

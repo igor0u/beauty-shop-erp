@@ -41,6 +41,7 @@ return array(
     'schedule/visit/add' => 'Schedule/AddVisit',
     'schedule/visit/date' => 'Schedule/FindVisitsByDate',
     'schedule/visit/delete' => 'Schedule/DeleteVisit',
+    'schedule/visit/finish' => 'Schedule/ChangeVisitFinishStatus',
     'schedule/visit/open' => 'Schedule/EditVisit',
     'schedule/visit/update' => 'Schedule/UpdateVisit',
     'settings' => 'Settings/Index',
